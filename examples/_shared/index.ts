@@ -59,7 +59,7 @@ export const roles = {
 } as const;
 
 export const config: ViteBkndConfig = {
-   connection: connections.memory as any,
+   //connection: connections.memory as any,
    initialConfig: {
       auth: {
          enabled: true,

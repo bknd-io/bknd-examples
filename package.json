@@ -4,13 +4,14 @@
   "private": true,
   "scripts": {
     "updater": "npx npm-check-updates -ui",
-    "example-admin-rich": "cd examples/admin-rich && npm run dev"
+    "example-admin-rich": "cd examples/admin-rich && npm run start"
   },
   "devDependencies": {
     "@hono/vite-dev-server": "^0.18.0",
     "@types/react": "^18.3.1",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.4",
+    "tsup": "^8.3.5",
     "vite": "^6.0.7",
     "vite-tsconfig-paths": "^5.1.4",
     "wrangler": "^3.101.0"
@@ -22,7 +23,7 @@
     "examples/*"
   ],
   "dependencies": {
-    "bknd": "^0.5.0-rc8",
+    "bknd": "^0.5.0-rc9",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "wouter": "^3.3.5"

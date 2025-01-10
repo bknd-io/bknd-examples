@@ -1,0 +1,30 @@
+{
+   "name": "shared",
+   "private": true,
+   "main": "index.ts",
+   "type": "module",
+   "exports": {
+      ".": {
+         "types": "./dist/index.d.ts",
+         "import": "./dist/index.js",
+         "require": "./dist/index.cjs"
+      }
+   },
+   "scripts": {
+      "build": "tsup --dts",
+      "watch": "tsup --watch"
+   },
+   "tsup": {
+      "entry": [
+         "index.ts"
+      ],
+      "format": [
+         "cjs",
+         "esm"
+      ],
+      "external": ["bknd"],
+      "clean": true,
+      "dts": true,
+      "outdir": "dist"
+   }
+}

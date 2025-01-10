@@ -3,6 +3,10 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite"
+    "start": "node src/index.js",
+    "dev": "npx tsx --watch src/index.js"
+  },
+  "dependencies": {
+    "shared": "*"
   }
 }
