@@ -3,7 +3,8 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "updater": "npx npm-check-updates -ui"
+    "updater": "npx npm-check-updates -ui",
+    "example-admin-rich": "cd examples/admin-rich && npm run dev"
   },
   "devDependencies": {
     "@hono/vite-dev-server": "^0.18.0",
