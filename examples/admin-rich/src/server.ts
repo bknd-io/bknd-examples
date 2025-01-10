@@ -1,9 +1,8 @@
 import { serve } from "bknd/adapter/vite";
-import { config } from "$shared";
+import { config, connections } from "$shared";
 import { em, entity, text, boolean, jsonSchema, media } from "bknd/data"
 
 const schema = em({
-   users: entity("users", {}),
    posts: entity("posts", {
       title: text(),
       content: text({
@@ -18,22 +17,42 @@ const schema = em({
             type: "array",
             items: {
                type: "string"
-            }
+            },
+            default: []
          }
-      })
-   })
-}, ({ relation }, { posts, users }) => {
-   relation(posts).manyToOne(users)
-   /*relation(posts).polyToMany(media, {
+      }),
+      images: media()
+   }),
+   users: entity("users", {}),
+   media: entity("media", {}),
+}, ({ relation }, { posts, users, media }) => {
+   relation(posts).manyToOne(users).polyToMany(media, {
       mappedBy: "images"
-   })*/
+   })
 })
+
+type Database = (typeof schema)["DB"];
+declare module "bknd/core" {
+   interface DB extends Database {}
+}
 
 export default serve({
    //mode: "fresh",
    ...config,
+   //connection: connections.file.local,
    initialConfig: {
       ...config.initialConfig,
       data: schema.toJSON()
+   },
+   options: {
+      seed: async (ctx) => {
+         await ctx.em.mutator("posts").insertMany([
+            {
+               title: "Sample post",
+               active: true,
+               tags: []
+            }
+         ]);
+      }
    }
 })

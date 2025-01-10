@@ -1,11 +1,20 @@
 import { App } from "bknd";
 import type { ViteBkndConfig } from "bknd/adapter/vite";
+import { randomString, secureRandomString } from "bknd/utils";
 
 export const connections = {
    file: {
-      type: "libsql",
-      config: {
-         url: "file:../_shared/data.db"
+      shared: {
+         type: "libsql",
+         config: {
+            url: "file:../_shared/data.db"
+         }
+      },
+      local: {
+         type: "libsql",
+         config: {
+            url: "file:data.db"
+         }
       }
    },
    memory: {
@@ -58,7 +67,8 @@ export const config: ViteBkndConfig = {
             enabled: true
          },
          jwt: {
-            secret: "secret"
+            issuer: randomString(8),
+            secret: secureRandomString(64),
          },
          roles: roles.sloppy as any
       },

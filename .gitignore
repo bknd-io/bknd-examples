@@ -178,3 +178,5 @@ dist
 examples/_shared/files/*
 !examples/_shared/files/.gitkeep
 examples/_shared/*.db
+
+**/*/*.db
