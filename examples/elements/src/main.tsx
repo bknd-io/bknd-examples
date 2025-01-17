@@ -1,15 +1,13 @@
+import { ClientProvider } from "bknd/client";
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-
-import { Admin } from "bknd/ui";
-import "bknd/dist/styles.css"
-
-function App() {
-   return <Admin withProvider />
-}
+import Routes from "./routes";
+import "bknd/dist/main.css"
 
 createRoot(document.getElementById('root')!).render(
    <StrictMode>
-      <App />
+      <ClientProvider>
+         <Routes />
+      </ClientProvider>
    </StrictMode>,
 )
